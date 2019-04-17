@@ -1,0 +1,28 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "The Amazon IAM creating users",
+	"Resources": {
+		"CNFUser": {
+			"Type": "AWS::IAM::User",
+			"Properties": {
+				"UserName": "DeveloperViaCli2"
+			}
+		},
+		"CFNGROUP": {
+			"Type": "AWS::IAM::Group",
+			"Properties": {
+				"GroupName": "TestTeam",
+				"ManagedPolicyArns": ["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]
+			}
+        },
+        "CFNADDUSERTOGROUP": {
+            
+                "Type": "AWS::IAM::UserToGroupAddition",
+                "Properties": {
+                   "GroupName": "TestTeam",
+                   "Users": [ "DeveloperViaCli2", "DeveloperViaCli" ]
+                }
+             
+        }
+	}
+}

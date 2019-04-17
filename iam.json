@@ -1,0 +1,12 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The Amazon IAM creating users",
+  "Resources": {
+    "CNFUser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "UserName": "DeveloperViaCli"
+      }
+    }
+  }
+}

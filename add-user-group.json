@@ -1,0 +1,13 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "The Amazon IAM creating users",
+    "Resources": {
+      "CNFUserToGroup": {
+        "Type": "AWS::IAM::UserToGroupAddition",
+        "Properties": {
+            "GroupName": "TestTeam",
+            "Users": [ "DeveloperViaCli2", "DeveloperViaCli" ]
+        }
+      }
+    }
+  }
