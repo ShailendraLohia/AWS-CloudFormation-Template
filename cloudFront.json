@@ -1,0 +1,40 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "CloudFront and OAI",
+    "Resources": {
+        "cloudfrontoriginaccessidentity": {
+            "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+            "Properties": {
+                "CloudFrontOriginAccessIdentityConfig": {
+                    "Comment": "First-OAI"
+                }
+            }
+        },
+        "cloudfrontdistribution": {
+            "Type": "AWS::CloudFront::Distribution",
+            "Properties": {
+                "DistributionConfig": {
+                    "Enabled" : "true",
+                    "Origins": [
+                        {
+                            "DomainName": "learncloudformation.s3.amazonaws.com",
+                            "Id" : "S3-learncloudformation",
+                            "S3OriginConfig" : {
+                                "OriginAccessIdentity" : "origin-access-identity/cloudfront/First-OAI"
+                            }
+                        }
+                    ],
+                    "DefaultCacheBehavior" : {
+                        "AllowedMethods" : [ "DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT" ],  
+                        "TargetOriginId" : "S3-learncloudformation",
+                        "ForwardedValues" : {
+                            "QueryString" : "false",
+                            "Cookies" : { "Forward" : "none" }
+                       },
+                       "ViewerProtocolPolicy" : "allow-all"   
+                    }
+                }
+            }
+        }
+    }
+}

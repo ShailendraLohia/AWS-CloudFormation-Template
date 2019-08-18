@@ -1,0 +1,24 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "S3 Bucket",
+    "Resources" : {
+        "S3Bucket" : {
+            "Type" : "AWS::S3::Bucket",
+            "Properties" : {
+                "BucketName" : "learncloudformation",
+                "VersioningConfiguration" : {
+                    "Status": "Enabled"
+                },
+                "BucketEncryption" : {
+                    "ServerSideEncryptionConfiguration": [{
+                      "ServerSideEncryptionByDefault": {
+                        "SSEAlgorithm": "AES256"
+                      }
+                    }]
+                  }
+            },
+            "DeletionPolicy": "Delete"
+        }
+    }
+    
+}
